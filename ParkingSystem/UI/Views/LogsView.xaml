@@ -1,0 +1,79 @@
+﻿<UserControl
+    x:Class="ParkingSystem.UI.Views.LogsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utils="clr-namespace:ParkingSystem.UI.Utils"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    FontFamily="{StaticResource DefaultFont}"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    mc:Ignorable="d">
+    <Grid>
+        <GroupBox
+            Grid.Column="0"
+            Margin="10"
+            Style="{DynamicResource MaterialDesignCardGroupBox}">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <wpf:PackIcon VerticalAlignment="Center" Kind="PlaylistCheck" />
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                                Text="Logs" />
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+
+            <Grid>
+                <Label
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="No logs">
+                    <Label.Resources>
+                        <Style BasedOn="{StaticResource {x:Type Label}}" TargetType="Label">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Logs.Count, FallbackValue=0}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Resources>
+                </Label>
+                <ListView
+                    Background="Transparent"
+                    ItemTemplate="{StaticResource LogViewTemplate}"
+                    ItemsSource="{Binding Logs}">
+                    <i:Interaction.Behaviors>
+                        <utils:AutoScrollToLastItemBehavior />
+                    </i:Interaction.Behaviors>
+                    <ListView.Resources>
+                        <Style BasedOn="{StaticResource {x:Type ListView}}" TargetType="ListView">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Logs.Count, FallbackValue=0}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
+            </Grid>
+
+        </GroupBox>
+    </Grid>
+</UserControl>
