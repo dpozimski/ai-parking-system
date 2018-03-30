@@ -10,10 +10,11 @@ using System.ComponentModel;
 using ParkingSystem.ImageHandlerWorker;
 using ParkingSystem.DriversRepository.DAL;
 using ParkingSystem.UI.Utils;
+using System.Windows;
 
 namespace ParkingSystem.UI.ViewModels
 {
-    public class LogsViewModel : ViewModelBase
+    public class LogsViewModel : ViewModelBase, IDisposable
     {
         private LogsDAL _logsDal;
         private WorkerFacade _workerFacade;
@@ -39,7 +40,7 @@ namespace ParkingSystem.UI.ViewModels
         {
             var vm = new LogViewModel(e.Log);
 
-            RootViewModel.HWND.Dispatcher.BeginInvoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 Logs.Add(vm);
 
@@ -48,6 +49,11 @@ namespace ParkingSystem.UI.ViewModels
                     $"{e.Owner.FirstName} {e.Owner.LastName} {e.Owner.NumberPlateNumber} arrived" :
                     $"{e.Owner.FirstName} {e.Owner.LastName} {e.Owner.NumberPlateNumber} needs to pay {e.Price.Value.ToString("N2")} PLN");
             }));
+        }
+
+        public void Dispose()
+        {
+            _workerFacade.Dispose();
         }
     }
 }

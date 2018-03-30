@@ -16,8 +16,6 @@ namespace ParkingSystem.UI.ViewModels.Core
             get { return DateTime.Now; }
         }
 
-        public Shell HWND { get; set; }
-
         public ShellViewModel()
         {
             InitTimer();

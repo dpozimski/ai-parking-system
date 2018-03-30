@@ -60,7 +60,7 @@
                 </TabItem>
 
                 <TabItem Header="Logs">
-                    <views:LogsView>
+                    <views:LogsView x:Name="LogsView">
                         <views:LogsView.DataContext>
                             <vm:LogsViewModel />
                         </views:LogsView.DataContext>

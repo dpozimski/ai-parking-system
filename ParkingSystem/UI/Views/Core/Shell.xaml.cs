@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
 using System.Drawing;
 using ParkingSystem.UI.ViewModels.Core;
+using System.ComponentModel;
+using System;
 
 namespace ParkingSystem.UI.Views.Core
 {
@@ -12,8 +14,12 @@ namespace ParkingSystem.UI.Views.Core
         public Shell()
         {
             DataContext = new ShellViewModel();
-            (DataContext as ShellViewModel).HWND = this;
             InitializeComponent();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            (LogsView.DataContext as IDisposable).Dispose();
         }
     }
 }
