@@ -13,7 +13,7 @@ namespace ParkingSystem.RestServer
 
         public void Start()
         {
-            server = new RESTServer();
+            server = new RESTServer(port: "12358");
             server.Start();
 
             if(!server.IsListening)
