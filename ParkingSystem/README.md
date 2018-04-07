@@ -10,7 +10,7 @@ Arrival time is saved in database with read license number.
 In logs there is an information about parking beginning - it is flagged with a green arrow.
 In the case of sending the same photo to the database, driver gets an e-mail about costs from wp.pl domain.
 Meanwhile in logs there is an information about end of parking - it is flagged with a red arrow.
-Parking time is calculated from car's arrive to departure. Cost is 3z³ per 1 hour.
+Parking time is calculated from car's arrive to departure. Cost is 3 PLN per 1 hour.
 
 Technologies:
 1. WPF - graphical subsystem which renders application window.
