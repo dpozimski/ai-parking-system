@@ -1,4 +1,4 @@
-#Recognition of licence plates in the picture
+# Recognition of licence plates in the picture
 
 The project is responsible for finding license plates in the pictures from the parking lot
 
